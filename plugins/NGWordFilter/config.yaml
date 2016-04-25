@@ -1,0 +1,29 @@
+name: NGWordFilter
+id:   NGWordFilter
+version: 0.1
+author_name: Junnama Noda
+author_link: http://junnama.alfasado.net/online/
+description: <__trans phrase="NG Word filter for Entry/Page.">
+l10n_class: NGWordFilter::L10N
+system_config_template: config.tmpl
+settings:
+    filter_ng_words:
+        default: Stupid
+    ng_words_error_msg:
+        default: Blog burst into flames!
+    ng_words_cols:
+        default: title,text,text_more,excerpt,keywords,tags
+callbacks:
+    cms_save_filter.entry:
+        -
+            handler: NGWordFilter::Callbacks::_cb_cms_save_filter_entry
+            priority: '5'
+    cms_save_filter.page:
+        -
+            handler: NGWordFilter::Callbacks::_cb_cms_save_filter_entry
+            priority: '5'
+    template_param.edit_entry:
+        -
+            handler: NGWordFilter::Callbacks::_cb_template_param_edit_entry
+            priority: '5'
+
